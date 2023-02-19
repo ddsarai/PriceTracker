@@ -45,3 +45,13 @@ def get_pmark_price(url):
     
     return({'name': pM_name, 'price':pM_price})
 
+def get_data(get_f, urls):
+    name = []
+    price = []
+    for link in urls:
+        data = get_f(link)
+        name.append(data['name'])
+        price.append(data['price'])
+        sleep(15)
+    d_dict = {'name':name, 'price':price}
+    return d_dict
