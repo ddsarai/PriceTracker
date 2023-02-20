@@ -55,3 +55,22 @@ def get_data(get_f, urls):
         sleep(15)
     d_dict = {'name':name, 'price':price}
     return d_dict
+
+egg_urls = [
+    'https://www.newegg.ca/amd-ryzen-9-5900x/p/N82E16819113664?Description=AMD%20Ryzen%209%205900X&cm_re=AMD_Ryzen%209%205900X-_-19-113-664-_-Product',
+    'https://www.newegg.ca/amd-ryzen-7-5800x3d-ryzen-7-5000-series/p/N82E16819113734?Item=N82E16819113734',
+    'https://www.newegg.ca/amd-ryzen-7-5800x/p/N82E16819113665?Description=ryzen%205800x&cm_re=ryzen_5800x-_-19-113-665-_-Product'
+]
+
+pmark_urls = [
+    'https://www.cpubenchmark.net/cpu.php?cpu=AMD+Ryzen+9+5900X&id=3870',
+    'https://www.cpubenchmark.net/cpu.php?cpu=AMD+Ryzen+7+5800X3D&id=4823',
+    'https://www.cpubenchmark.net/cpu.php?cpu=AMD+Ryzen+7+5800X&id=3869'
+]
+
+negg_data = get_data(get_negg_price, egg_urls)
+
+pmark_data = get_data(get_pmark_price, pmark_urls)
+
+print(negg_data)
+print(pmark_data)
