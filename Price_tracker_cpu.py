@@ -72,5 +72,9 @@ negg_data = get_data(get_negg_price, egg_urls)
 
 pmark_data = get_data(get_pmark_price, pmark_urls)
 
-print(negg_data)
-print(pmark_data)
+pmark_frame = pd.DataFrame(pmark_data)
+pmark_frame= pmark_frame.rename({'price':'pMark_price'}, axis=1)
+negg_frame = pd.DataFrame(negg_data)
+
+pmark_frame['negg_price'] = negg_frame['price']
+pmark_frame['date'] = pd.to_datetime('today')
