@@ -78,3 +78,9 @@ negg_frame = pd.DataFrame(negg_data)
 
 pmark_frame['negg_price'] = negg_frame['price']
 pmark_frame['date'] = pd.to_datetime('today')
+
+if os.path.isfile('price_check.xlsx') == False:
+    pmark_frame.to_excel('price_check.xlsx', index=False)
+    exit()
+else:
+    df = pd.read_excel('price_check.xlsx')
