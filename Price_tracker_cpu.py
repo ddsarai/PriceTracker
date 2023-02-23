@@ -84,3 +84,14 @@ if os.path.isfile('price_check.xlsx') == False:
     exit()
 else:
     df = pd.read_excel('price_check.xlsx')
+
+with pd.ExcelWriter(
+    'price_check.xlsx',
+    mode='a',
+    engine='openpyxl',
+    if_sheet_exists='overlay') as writer:
+        pmark_frame.to_excel(writer, sheet_name='Sheet1',
+        startrow=writer.sheets['Sheet1'].max_row,
+        header=False, index=False)
+
+df=pd.read_excel('price_check.xlsx')
