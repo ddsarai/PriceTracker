@@ -56,6 +56,9 @@ def get_data(get_f, urls):
     d_dict = {'name':name, 'price':price}
     return d_dict
 
+def priceChange(new, old):
+     return ((old-new)/old) * 100
+
 egg_urls = [
     'https://www.newegg.ca/amd-ryzen-9-5900x/p/N82E16819113664?Description=AMD%20Ryzen%209%205900X&cm_re=AMD_Ryzen%209%205900X-_-19-113-664-_-Product',
     'https://www.newegg.ca/amd-ryzen-7-5800x3d-ryzen-7-5000-series/p/N82E16819113734?Item=N82E16819113734',
@@ -95,3 +98,4 @@ with pd.ExcelWriter(
         header=False, index=False)
 
 df=pd.read_excel('price_check.xlsx')
+
