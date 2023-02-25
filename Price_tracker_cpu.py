@@ -12,7 +12,7 @@ the user to the change.
 
 
 from bs4 import BeautifulSoup as bs
-import html5lib
+from datetime import datetime
 import numpy as np
 import openpyxl
 import os
@@ -26,7 +26,15 @@ headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gec
 #Need to put in error handling for all functions
 
 def get_negg_price(url):
-    nEgg_soup = bs(requests.get(url, headers=headers).content, 'html.parser')
+    try:
+         nEgg_soup = bs(requests.get(url, headers=headers).content, 'html.parser')
+    
+    except requests.exceptions.ConnectionError:
+        with open('ErrorLog.txt', 'a+') as f:
+            f.write(f'\nNewEgg ConnectionError on {datetime.now()}')
+            f.close()
+        return({'name':'NA','price':'NA'})
+
 
     egg_name = nEgg_soup.find('h1', {'class':'product-title'}).text
     egg_price = nEgg_soup.find('li', {'class':'price-current'}).text
