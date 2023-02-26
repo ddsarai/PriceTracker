@@ -21,6 +21,8 @@ import re
 import requests
 from time import sleep
 
+#Need to put in scheduling
+
 headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0','Accept': '*/*', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8'}
 
 #Need to put in error handling for all functions
@@ -35,8 +37,13 @@ def get_negg_price(url):
             f.close()
         return({'name':'NA','price':'NA'})
 
+    try:
+        egg_name = nEgg_soup.find('h1', {'class':'product-title'}).text
+    except AttributeError:
+        with open('ErrorLog.txt', 'a+') as f:
+            f.write(f'\nNewEgg Product Name not found on {datetime.now()}')
+        return ({'name':'NA', 'price':'NA'})
 
-    egg_name = nEgg_soup.find('h1', {'class':'product-title'}).text
     egg_price = nEgg_soup.find('li', {'class':'price-current'}).text
     egg_name= 'negg-CA_' + egg_name[:19]
     egg_price = float(egg_price[1:])
@@ -49,9 +56,11 @@ def get_pmark_price(url):
     pM_name = 'pMark_' + pM_name
     pM_price = pMark_soup.find('a',{'href':'#history'}).text
     pM_price = float(pM_price[1:7])
-    #convert usd to cad
+    #Need to convert usd to cad
     
     return({'name': pM_name, 'price':pM_price})
+
+# Need to add function for Amazon Prices
 
 def get_data(get_f, urls):
     name = []
@@ -107,3 +116,6 @@ with pd.ExcelWriter(
 
 df=pd.read_excel('price_check.xlsx')
 
+# Need to calculate price change
+
+# Need to email alert if price change threshold reached
