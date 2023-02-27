@@ -44,7 +44,13 @@ def get_negg_price(url):
             f.write(f'\nNewEgg Product Name not found on {datetime.now()}')
         return ({'name':'NA', 'price':'NA'})
 
-    egg_price = nEgg_soup.find('li', {'class':'price-current'}).text
+    try:
+        egg_price = nEgg_soup.find('li', {'class':'price-current'}).text
+    except AttributeError:
+        with open('ErrorLog.txt', 'a+') as f:
+            f.write(f'\nNewegg Price not found on {datetime.now()}')
+        return({'name':'NA', 'price':'NA'})
+    
     egg_name= 'negg-CA_' + egg_name[:19]
     egg_price = float(egg_price[1:])
     return({'name': egg_name, 'price': egg_price})
