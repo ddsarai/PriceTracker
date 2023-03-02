@@ -56,8 +56,14 @@ def get_negg_price(url):
     return({'name': egg_name, 'price': egg_price})
 
 def get_pmark_price(url):
-    pMark_soup = bs(requests.get(url, headers=headers).content, 'html.parser')
-
+    try:
+        pMark_soup = bs(requests.get(url, headers=headers).content, 'html.parser')
+    except requests.exceptions.ConnectionError:
+        with open('ErrorLog.txt', 'a+') as f:
+            f.write(f'\nConnectionError on {datetime.now()}')
+            f.close
+        return({'name':'NA', 'price':'NA'})
+    
     pM_name = pMark_soup.find('div', {'class':'productheader'})('h1')[0].text
     pM_name = 'pMark_' + pM_name
     pM_price = pMark_soup.find('a',{'href':'#history'}).text
