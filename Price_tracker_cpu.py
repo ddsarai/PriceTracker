@@ -64,7 +64,9 @@ def get_pmark_price(url):
             f.close
         return({'name':'NA', 'price':'NA'})
     
-    pM_name = pMark_soup.find('div', {'class':'productheader'})('h1')[0].text
+    try:
+        pM_name = pMark_soup.find('div', {'class':'productheader'})('h1')[0].text
+    except AttributeError:
     pM_name = 'pMark_' + pM_name
     pM_price = pMark_soup.find('a',{'href':'#history'}).text
     pM_price = float(pM_price[1:7])
