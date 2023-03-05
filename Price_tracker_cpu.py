@@ -72,7 +72,11 @@ def get_pmark_price(url):
             f.close()
         return({'name':'NA', 'price':'NA'})
     pM_name = 'pMark_' + pM_name
-    pM_price = pMark_soup.find('a',{'href':'#history'}).text
+    
+    try:
+        pM_price = pMark_soup.find('a',{'href':'#history'}).text
+    except AttributeError:
+
     pM_price = float(pM_price[1:7])
     #Need to convert usd to cad
     
