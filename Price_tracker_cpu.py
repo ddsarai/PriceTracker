@@ -76,6 +76,8 @@ def get_pmark_price(url):
     try:
         pM_price = pMark_soup.find('a',{'href':'#history'}).text
     except AttributeError:
+        with open('ErrorLog.txt', 'a+') as f:
+            f.write()
 
     pM_price = float(pM_price[1:7])
     #Need to convert usd to cad
