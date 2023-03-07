@@ -77,7 +77,7 @@ def get_pmark_price(url):
         pM_price = pMark_soup.find('a',{'href':'#history'}).text
     except AttributeError:
         with open('ErrorLog.txt', 'a+') as f:
-            f.write()
+            f.write(f'\nPassmark price was not found on {datetime.now()}')
 
     pM_price = float(pM_price[1:7])
     #Need to convert usd to cad
