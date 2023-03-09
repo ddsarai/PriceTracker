@@ -71,7 +71,7 @@ def get_pmark_price(url):
             f.write(f'\nPC_Mark Name not found on {datetime.now()}')
             f.close()
         return({'name':'NA', 'price':'NA'})
-    pM_name = 'pMark_' + pM_name
+    #pM_name = 'pMark_' + pM_name
     
     try:
         pM_price = pMark_soup.find('a',{'href':'#history'}).text
