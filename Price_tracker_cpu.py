@@ -27,7 +27,7 @@ headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gec
 
 #Need to put in error handling for all functions
 
-def get_negg_price(url):
+def get_negg_data(url):
     try:
          nEgg_soup = bs(requests.get(url, headers=headers).content, 'html.parser')
     
@@ -55,7 +55,7 @@ def get_negg_price(url):
     egg_price = float(egg_price[1:])
     return({'name': egg_name, 'price': egg_price})
 
-def get_pmark_price(url):
+def get_pmark_data(url):
     try:
         pMark_soup = bs(requests.get(url, headers=headers).content, 'html.parser')
     except requests.exceptions.ConnectionError:
@@ -86,7 +86,13 @@ def get_pmark_price(url):
     
     return({'name': pM_name, 'price':pM_price})
 
-# Need to add function for Amazon Prices
+# Note you need to add amazon urls list & change negg & pMark url list to Ryzen 7000!
+
+def get_amazon_data(url):
+    amazon_soup = bs(requests.get(url, headers=headers).content, 'html.parser')
+
+    amazon_name = amazon_soup.find('span', {'id':'productTitle'}).text
+    amazon_name = 'AMD Ryzen ' + amazon_name[19:26]
 
 def get_data(get_f, urls):
     name = []
@@ -114,9 +120,9 @@ pmark_urls = [
     'https://www.cpubenchmark.net/cpu.php?cpu=AMD+Ryzen+7+5800X&id=3869'
 ]
 
-negg_data = get_data(get_negg_price, egg_urls)
+negg_data = get_data(get_negg_data, egg_urls)
 
-pmark_data = get_data(get_pmark_price, pmark_urls)
+pmark_data = get_data(get_pmark_data, pmark_urls)
 
 pmark_frame = pd.DataFrame(pmark_data)
 pmark_frame= pmark_frame.rename({'price':'pMark_price'}, axis=1)
