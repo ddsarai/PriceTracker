@@ -94,6 +94,11 @@ def get_amazon_data(url):
     amazon_name = amazon_soup.find('span', {'id':'productTitle'}).text
     amazon_name = 'AMD Ryzen ' + amazon_name[19:26]
 
+    amazon_price = amazon_soup.find('span', {'class':'a-price-whole'}).text
+    amazon_price = float(amazon_price)
+    
+    return({'name':amazon_name, 'price': amazon_price})
+
 def get_data(get_f, urls):
     name = []
     price = []
