@@ -86,7 +86,7 @@ def get_pmark_data(url):
     
     return({'name': pM_name, 'price':pM_price})
 
-# Note you need to add amazon urls list & change negg & pMark url list to Ryzen 7000!
+
 
 def get_amazon_data(url):
     amazon_soup = bs(requests.get(url, headers=headers).content, 'html.parser')
@@ -113,6 +113,7 @@ def get_data(get_f, urls):
 def priceChange(new, old):
      return ((old-new)/old) * 100
 
+# Need to update both egg_urls and pmark_urls to ryzen 7000 series
 egg_urls = [
     'https://www.newegg.ca/amd-ryzen-9-5900x/p/N82E16819113664?Description=AMD%20Ryzen%209%205900X&cm_re=AMD_Ryzen%209%205900X-_-19-113-664-_-Product',
     'https://www.newegg.ca/amd-ryzen-7-5800x3d-ryzen-7-5000-series/p/N82E16819113734?Item=N82E16819113734',
@@ -123,6 +124,13 @@ pmark_urls = [
     'https://www.cpubenchmark.net/cpu.php?cpu=AMD+Ryzen+9+5900X&id=3870',
     'https://www.cpubenchmark.net/cpu.php?cpu=AMD+Ryzen+7+5800X3D&id=4823',
     'https://www.cpubenchmark.net/cpu.php?cpu=AMD+Ryzen+7+5800X&id=3869'
+]
+
+amazon_urls = [
+    'https://www.amazon.ca/AMD-7600X-12-Thread-Unlocked-Processor/dp/B0BBJDS62N/ref=sr_1_1?crid=2EAA7YS290PYY&keywords=Ryzen+5+7&qid=1678645641&sprefix=ryzen+5+7%2Caps%2C97&sr=8-1',
+    'https://www.amazon.ca/AMD-7700X-16-Thread-Unlocked-Processor/dp/B0BBHHT8LY/ref=sr_1_2?crid=Z42M59CKI7RB&keywords=ryzen+7+7800x&qid=1678645720&sprefix=Ryzen+7+78%2Caps%2C94&sr=8-2',
+    'https://www.amazon.ca/AMD-7900X-24-Thread-Unlocked-Processor/dp/B0BBJ59WJ4/ref=sr_1_15?crid=2LETOV3TM12GO&keywords=Ryzen&qid=1678645650&sprefix=ryzen%2Caps%2C101&sr=8-15',
+    'https://www.amazon.ca/AMD-7950X-32-Thread-Unlocked-Processor/dp/B0BBHD5D8Y/ref=sr_1_8?crid=Z42M59CKI7RB&keywords=ryzen+7+7800x&qid=1678645720&sprefix=Ryzen+7+78%2Caps%2C94&sr=8-8'
 ]
 
 negg_data = get_data(get_negg_data, egg_urls)
