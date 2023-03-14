@@ -115,15 +115,17 @@ def priceChange(new, old):
 
 # Need to update both egg_urls and pmark_urls to ryzen 7000 series
 egg_urls = [
-    'https://www.newegg.ca/amd-ryzen-9-5900x/p/N82E16819113664?Description=AMD%20Ryzen%209%205900X&cm_re=AMD_Ryzen%209%205900X-_-19-113-664-_-Product',
-    'https://www.newegg.ca/amd-ryzen-7-5800x3d-ryzen-7-5000-series/p/N82E16819113734?Item=N82E16819113734',
-    'https://www.newegg.ca/amd-ryzen-7-5800x/p/N82E16819113665?Description=ryzen%205800x&cm_re=ryzen_5800x-_-19-113-665-_-Product'
+    'https://www.newegg.ca/amd-ryzen-5-7600x-ryzen-5-7000-series/p/N82E16819113770?Description=amd%205%207600x&cm_re=amd_5%207600x-_-19-113-770-_-Product',
+    'https://www.newegg.ca/amd-ryzen-7-7700x-ryzen-7-7000-series/p/N82E16819113768?Description=7700x&cm_re=7700x-_-19-113-768-_-Product',
+    'https://www.newegg.ca/amd-ryzen-9-7900x-ryzen-9-7000-series/p/N82E16819113769?Description=7900x&cm_re=7900x-_-19-113-769-_-Product',
+    'https://www.newegg.ca/amd-ryzen-9-7950x-ryzen-9-7000-series/p/N82E16819113771?Description=7950x&cm_re=7950x-_-19-113-771-_-Product'
 ]
 
 pmark_urls = [
-    'https://www.cpubenchmark.net/cpu.php?cpu=AMD+Ryzen+9+5900X&id=3870',
-    'https://www.cpubenchmark.net/cpu.php?cpu=AMD+Ryzen+7+5800X3D&id=4823',
-    'https://www.cpubenchmark.net/cpu.php?cpu=AMD+Ryzen+7+5800X&id=3869'
+    'https://www.cpubenchmark.net/cpu.php?id=5033',
+    'https://www.cpubenchmark.net/cpu.php?id=5036',
+    'https://www.cpubenchmark.net/cpu.php?id=5027',
+    'https://www.cpubenchmark.net/cpu.php?id=5031'
 ]
 
 amazon_urls = [
