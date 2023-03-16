@@ -101,13 +101,20 @@ def get_amazon_data(url):
         amazon_name = amazon_soup.find('span', {'id':'productTitle'}).text
     except AttributeError:
         with open('ErrorLog.txt', 'a+') as f:
-            f.write(f'\nNewEgg Product Name not found on {datetime.now()}')
+            f.write(f'\nAmazon Product Name not found on {datetime.now()}')
             f.close()
         return({'name':'NA', 'price':'NA'})
     
     amazon_name = 'AMD Ryzen ' + amazon_name[19:26]
 
-    amazon_price = amazon_soup.find('span', {'class':'a-price-whole'}).text
+    try:
+        amazon_price = amazon_soup.find('span', {'class':'a-price-whole'}).text
+    except AttributeError:
+        with open('ErrorLog.txt', 'a+') as f:
+            f.write(f'\nAmazon Price not found on {datetime.now()}')
+            f.close()
+    return({'name':'NA', 'price':'NA'})
+    
     amazon_price = float(amazon_price)
     
     return({'name':amazon_name, 'price': amazon_price})
