@@ -113,7 +113,7 @@ def get_amazon_data(url):
         with open('ErrorLog.txt', 'a+') as f:
             f.write(f'\nAmazon Price not found on {datetime.now()}')
             f.close()
-    return({'name':'NA', 'price':'NA'})
+        return({'name':'NA', 'price':'NA'})
     
     amazon_price = float(amazon_price)
     
@@ -133,7 +133,21 @@ def get_data(get_f, urls):
 def priceChange(new, old):
      return ((old-new)/old) * 100
 
-# Need to update both egg_urls and pmark_urls to ryzen 7000 series
+def checkPrices(df, len_url):
+    changes = {}
+    length = len_url
+    while length > 0:
+        pchange = priceChange(df.iloc[-length,1], df.iloc[-length-len_url,1])
+        if pchange > 5:
+            changes['pmark_'+ df.iloc[-length,0]] = f'new price {df.iloc[-length,1]} with discount of {pchange}%'
+        length -= 1
+    length = len_url
+    while length > 0:
+        pchange = priceChange(df.iloc[-length,2], df.iloc[-length-len_url,2])
+        if
+        
+
+# Need to add Amazon to checkPrices function
 egg_urls = [
     'https://www.newegg.ca/amd-ryzen-5-7600x-ryzen-5-7000-series/p/N82E16819113770?Description=amd%205%207600x&cm_re=amd_5%207600x-_-19-113-770-_-Product',
     'https://www.newegg.ca/amd-ryzen-7-7700x-ryzen-7-7000-series/p/N82E16819113768?Description=7700x&cm_re=7700x-_-19-113-768-_-Product',
