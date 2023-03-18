@@ -144,7 +144,10 @@ def checkPrices(df, len_url):
     length = len_url
     while length > 0:
         pchange = priceChange(df.iloc[-length,2], df.iloc[-length-len_url,2])
-        if
+        if pchange > 5:
+            changes['negg_'+df.iloc[-length,0]] = f'new price {df.iloc[-length,2]} with discount of {pchange}%'
+        length=length-1
+    return changes
         
 
 # Need to add Amazon to checkPrices function
