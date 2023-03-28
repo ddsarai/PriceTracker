@@ -200,6 +200,8 @@ with pd.ExcelWriter(
 
 df=pd.read_excel('price_check.xlsx')
 
-# Need to calculate price change
 
+egg_changes = checkPrices(df, len(egg_urls))
+pMark_changes = checkPrices(df, len(pmark_urls))
+amazon_changes = checkPrices(df, len(amazon_urls))
 # Need to email alert if price change threshold reached
