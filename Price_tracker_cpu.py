@@ -25,7 +25,7 @@ from time import sleep
 
 headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0','Accept': '*/*', 'Accept-Encoding': 'gzip, deflate, br', 'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8'}
 
-#Need to put in error handling for all functions
+
 
 def get_negg_data(url):
     try:
