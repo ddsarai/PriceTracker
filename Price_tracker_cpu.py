@@ -13,10 +13,15 @@ the user to the change.
 
 from bs4 import BeautifulSoup as bs
 from datetime import datetime
+from email import encoders
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.base import MIMEBase
 import numpy as np
 import openpyxl
 import os
 import pandas as pd
+import smtplib
 import re
 import requests
 from time import sleep
