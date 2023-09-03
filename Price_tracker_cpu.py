@@ -210,3 +210,12 @@ egg_changes = checkPrices(df, len(egg_urls))
 pMark_changes = checkPrices(df, len(pmark_urls))
 amazon_changes = checkPrices(df, len(amazon_urls))
 # Need to email alert if price change threshold reached
+
+email = 'unclebob@dreamland.com' #enter email address here
+password = input('Please enter email password')
+
+FROM = email
+To = email
+
+subject='Alert: Price Change on Ryzen 7000 Series'
+
