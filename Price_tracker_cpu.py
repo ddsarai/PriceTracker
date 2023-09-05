@@ -153,6 +153,9 @@ def checkPrices(df, len_url):
             changes['negg_'+df.iloc[-length,0]] = f'new price {df.iloc[-length,2]} with discount of {pchange}%'
         length=length-1
     return changes
+
+def send_mail(email,password, FROM, TO, msg):
+    server = smtplib.STMP(host='smtp-mail.outlook.com', port=587)
         
 
 # Need to add Amazon to checkPrices function
@@ -218,4 +221,9 @@ FROM = email
 To = email
 
 subject='Alert: Price Change on Ryzen 7000 Series'
+
+msg = MIMEMultipart('alternative')
+msg['From'] = FROM
+msg['To'] = To
+msg['Subject'] = subject
 
