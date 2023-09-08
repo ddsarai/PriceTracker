@@ -156,6 +156,10 @@ def checkPrices(df, len_url):
 
 def send_mail(email,password, FROM, TO, msg):
     server = smtplib.STMP(host='smtp-mail.outlook.com', port=587)
+    server.starttls()
+    server.login(email, password)
+    server.sendmail(FROM, TO, msg.as_string())
+    server.quit()
         
 
 # Need to add Amazon to checkPrices function
@@ -214,16 +218,17 @@ pMark_changes = checkPrices(df, len(pmark_urls))
 amazon_changes = checkPrices(df, len(amazon_urls))
 # Need to email alert if price change threshold reached
 
-email = 'unclebob@dreamland.com' #enter email address here
-password = input('Please enter email password')
 
-FROM = email
-To = email
+def sendPriceAlert():
+    email = 'unclebob@dreamland.com' #enter email address here
+    password = input('Please enter email password')
+    FROM = email
+    To = email
+    subject='Alert: Price Change on Ryzen 7000 Series'
+    msg = MIMEMultipart('alternative')
+    msg['From'] = FROM
+    msg['To'] = To
+    msg['Subject'] = subject
+    html =  "The price of the Ryzen processor has changed"
 
-subject='Alert: Price Change on Ryzen 7000 Series'
-
-msg = MIMEMultipart('alternative')
-msg['From'] = FROM
-msg['To'] = To
-msg['Subject'] = subject
 
